@@ -5,26 +5,19 @@ public extension UIViewController{
      Show customized activity indicator,
      actually add activity indicator to passing view
      */
-    public func showActivityIndicator() {
+    public func showActivityIndicator(color: UIColor) {
         let container: UIView = UIView()
         let loadingView: UIView = UIView()
         let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
         container.tag = 100
         activityIndicator.tag = 101
+        activityIndicator.color = color
         container.frame = self.view.frame
         container.center = self.view.center
         loadingView.frame = CGRect(x: 0.0, y: 0.0, width: 80.0, height: 80.0)
        // #if os(iOS){
             switch traitCollection.userInterfaceStyle {
             case .dark:
-//                let color = UIColor(dynamicProvider: { traitCollection in
-//                    switch traitCollection.userInterfaceStyle{
-//                    case .dark:
-//                        return UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
-//                    case .light:
-//                        return container.backgroundColor = UIColor(displayP3Red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
-//                    }
-//                })
                 container.backgroundColor = UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
                 loadingView.backgroundColor = UIColor(displayP3Red: 0.733, green: 0.733, blue: 0.733, alpha: 0.7)//UIColor(named: "loadingBackground")
             case .light:
@@ -36,7 +29,6 @@ public extension UIViewController{
             @unknown default:
                 print("well heat the heck is this")
         }
-       // }
         loadingView.center = self.view.center
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
