@@ -5,7 +5,7 @@ public extension UIViewController{
      Show customized activity indicator,
      actually add activity indicator to passing view
      */
-    public func showActivityIndicator(color: UIColor) {
+    func showActivityIndicator(color: UIColor) {
         let container: UIView = UIView()
         let loadingView: UIView = UIView()
         let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -29,7 +29,7 @@ public extension UIViewController{
             @unknown default:
                 print("well heat the heck is this")
         }
-        loadingView.center = self.view.center
+        loadingView.center = self.view.window?.center ?? self.view.center
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
         activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)
@@ -47,7 +47,7 @@ public extension UIViewController{
      Actually remove activity indicator from its super view
      
      */
-    public func hideActivityIndicator() {
+    func hideActivityIndicator() {
         DispatchQueue.main.async {
             if let activity =   self.view.viewWithTag(101){
                 (activity as? UIActivityIndicatorView)?.stopAnimating()
