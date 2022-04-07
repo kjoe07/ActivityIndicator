@@ -29,7 +29,9 @@ public extension UIViewController{
             @unknown default:
                 print("well heat the heck is this")
         }
-        loadingView.center = self.view.window?.center ?? self.view.center
+        let x =  UIScreen.main.bounds.midX
+        let y = UIScreen.main.bounds.midY
+        loadingView.center = CGPoint(x: x, y: y)//self.view.window?.center ?? self.view.center
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
         activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0)
