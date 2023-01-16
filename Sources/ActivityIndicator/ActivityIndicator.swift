@@ -29,8 +29,8 @@ public extension UIViewController{
             @unknown default:
                 print("well heat the heck is this")
         }
-        let x =  UIScreen.main.bounds.midX
-        let y = UIScreen.main.bounds.midY
+        let x = view.bounds.midX
+        let y = view.bounds.midY
         loadingView.center = CGPoint(x: x, y: y)//self.view.window?.center ?? self.view.center
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
@@ -41,6 +41,17 @@ public extension UIViewController{
         loadingView.addSubview(activityIndicator)
         container.addSubview(loadingView)
         view.addSubview(container)
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        container.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            loadingView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            container.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            container.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+        ])
         activityIndicator.startAnimating()
     }
     
